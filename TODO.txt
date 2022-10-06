@@ -1,0 +1,4 @@
+-make functions to ask and store user input information
+-make functions to test the questions being asked and if completed
+-add to style.css
+-link all pages together and work in OOP 
