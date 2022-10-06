@@ -185,6 +185,8 @@ inquirer.prompt(menuQuestion).then(answer => {
 
 const addManager = () => {
     inquirer.prompt(managerQuestions).then(managerInfo => {
+        let manager;
+        manager = new Manager (managerName, id, email, officeNumber)
         teamArray.push(managerInfo)
         console.log(teamArray)
         promptMenu()
