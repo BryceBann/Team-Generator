@@ -4,7 +4,7 @@ const generateHTML = require('./src/GenerateHTML');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
-// const Employee = require('./lib/Employee');
+
 
 const fs = require('fs');
 const inquirer = require('inquirer');
@@ -14,7 +14,7 @@ const managerQuestions = [
 
     {
         type: 'input',
-        name: 'managerName',
+        name: 'name',
         message: 'Enter manager name',
         validate: mnInput => {
             if(mnInput){
@@ -89,7 +89,7 @@ const employeeQuestions = [
 
     {
         type: 'input',
-        name: 'employeeName',
+        name: 'name',
         message: 'Enter employee name',
         validate: enInput => {
             if(enInput){
@@ -133,7 +133,7 @@ const employeeQuestions = [
         type: 'input',
         name: 'Github',
         message: 'Enter github username',
-        when: (input) => input.employeeRole === 'Engineer',
+        when: (input) => input.role === 'Engineer',
         validate: ghInput => {
             if(ghInput){
                 return true;
@@ -148,7 +148,7 @@ const employeeQuestions = [
     type: 'input',
     name: 'School',
     message: "Enter intern's school",
-    when: (input) => input.employeeRole === 'Intern',
+    when: (input) => input.role === 'Intern',
     validate: isInput => {
         if(isInput){
             return true;
@@ -186,7 +186,8 @@ inquirer.prompt(menuQuestion).then(answer => {
 const addManager = () => {
     inquirer.prompt(managerQuestions).then(managerInfo => {
         let manager;
-        manager = new Manager (managerName, id, email, officeNumber)
+        if(managerQuestions.role === "Yes")
+        manager = new Manager (managerQuestions.name, managerQuestions.id, managerQuestions.email, managerQuestions.officeNumber)
         teamArray.push(managerInfo)
         console.log(teamArray)
         promptMenu()
@@ -198,12 +199,12 @@ const addEmployee = () => {
 
         let employee;
 
-        if(employeeInfo.role === "Engineer") {
-            employee = new Engineer (employeeName, id, email, github);
+        if(employeeQuestions.role === "Engineer") {
+            employee = new Engineer (employeeQuestions.name, employeeQuestions.id, employeeQuestions.email, employeeQuestions.github);
            
 
-        }else if(employeeInfo.role === "Intern") {
-            employee = new Intern (employeeName, id, email, school)
+        }else if(employeeQuestions.role === "Intern") {
+            employee = new Intern (employeeQuestions.name, employeeQuestions.id, employeeQuestions.email, employeeQuestions.school)
         }
         teamArray.push(employeeInfo)
         console.log(teamArray)
@@ -216,7 +217,28 @@ const addEmployee = () => {
     })
 }
 
-const writeFile = data => {}
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return
+        }else{
+            console.log("Your team page is created")
+        }
+    })
+}
 
 
 addManager()
+// .then(addEmployee)
+// .then(teamArray => {
+//     return generateHTML(teamArray);
+// })
+
+// .then(pageHTML =>{
+//     return writeFile(pageHTML)
+// })
+
+// .cathch(err => {
+//     console.log(err)
+// })
