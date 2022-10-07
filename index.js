@@ -11,7 +11,6 @@ const inquirer = require('inquirer');
 
 
 const managerQuestions = [
-
     {
         type: 'input',
         name: 'name',
@@ -186,7 +185,6 @@ inquirer.prompt(menuQuestion).then(answer => {
 const addManager = () => {
     inquirer.prompt(managerQuestions).then(managerInfo => {
         let manager;
-        if(managerQuestions.role === "Yes")
         manager = new Manager (managerQuestions.name, managerQuestions.id, managerQuestions.email, managerQuestions.officeNumber)
         teamArray.push(managerInfo)
         console.log(teamArray)
@@ -230,15 +228,3 @@ const writeFile = data => {
 
 
 addManager()
-// .then(addEmployee)
-// .then(teamArray => {
-//     return generateHTML(teamArray);
-// })
-
-// .then(pageHTML =>{
-//     return writeFile(pageHTML)
-// })
-
-// .cathch(err => {
-//     console.log(err)
-// })
