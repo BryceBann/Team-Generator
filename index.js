@@ -4,7 +4,7 @@ const generateHTML = require('./src/GenerateHTML');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
-const Employee = require('./lib/Employee');
+// const Employee = require('./lib/Employee');
 
 const fs = require('fs');
 const inquirer = require('inquirer');
@@ -28,7 +28,7 @@ const managerQuestions = [
 
     {
         type: 'input',
-        name: 'managerID',
+        name: 'id',
         message: 'Enter manager ID number',
         validate: idInput => {
             if(idInput){
@@ -42,7 +42,7 @@ const managerQuestions = [
 
     {
         type: 'input',
-        name: 'managerEmail',
+        name: 'email',
         message: 'Enter manager email',
         validate: emailInput => {
             if(emailInput){
@@ -81,7 +81,7 @@ const menuQuestion = {
 const employeeQuestions = [
     {
         type: 'list',
-        name: 'employeeRole',
+        name: 'role',
         message: "What is the employee's role ",
         choices: ['Engineer', 'Intern']
     
@@ -103,7 +103,7 @@ const employeeQuestions = [
 
     {
         type: 'input',
-        name: 'employeeID',
+        name: 'id',
         message: 'Enter employee ID',
         validate: eidInput => {
             if(eidInput){
@@ -117,7 +117,7 @@ const employeeQuestions = [
 
     {
         type: 'input',
-        name: 'employeeEmail',
+        name: 'email',
         message: 'Enter employee email',
         validate: eeInput => {
             if(eeInput){
@@ -199,11 +199,11 @@ const addEmployee = () => {
         let employee;
 
         if(employeeInfo.role === "Engineer") {
-            employee = new Engineer (name, id, email, github);
+            employee = new Engineer (employeeName, id, email, github);
            
 
         }else if(employeeInfo.role === "Intern") {
-            employee = new Intern (name, id, email, school)
+            employee = new Intern (employeeName, id, email, school)
         }
         teamArray.push(employeeInfo)
         console.log(teamArray)
