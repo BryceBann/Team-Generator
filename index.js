@@ -1,5 +1,5 @@
 //Linking all pages for page creation and team profiles
-const generateHTML = require('./src/GenerateHTML');
+const generateHTML = require('./src/generateHTML');
 
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
@@ -224,7 +224,7 @@ const writeFile = data => {
             console.log("Your team page is created")
         }
     })
-}
+};
 
 
 addManager()
