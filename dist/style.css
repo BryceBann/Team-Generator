@@ -1,0 +1,24 @@
+:root {
+    --main: lightblue;
+    --second: grey;
+    --font: white;
+}
+
+#navbar {
+    background-color: var(--main);
+    font-size: 75px;
+}
+
+.card-header {
+    background-color: var(--main);
+}
+
+.card-body {
+    background-color: var(--second);
+}
+
+.container {
+    justify-content: space-evenly;
+    display: flex;
+
+}

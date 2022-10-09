@@ -2,7 +2,7 @@
 
 const generateIntern = function (intern) {
     return`
-    <div class="col-4 mt-3">
+    <div class="col mt-3">
     <div class="card h-150">
         <div class="card-header">
             <h3>${intern.name}</h3>
@@ -21,7 +21,7 @@ const generateIntern = function (intern) {
 
 const generateEngineer = function (engineer) {
     return`
-    <div class="col-4 mt-3">
+    <div class="col mt-3">
     <div class="card h-150">
         <div class="card-header">
             <h3>${engineer.name}</h3>
@@ -40,7 +40,7 @@ const generateEngineer = function (engineer) {
 
 const generateManager = function (manager) {
     return`
-    <div class="col-4 mt-3">
+    <div class="col mt-3">
     <div class="card h-150">
         <div class="card-header">
             <h3>${manager.name}</h3>
@@ -126,4 +126,4 @@ const generatePage = function (employeeCards) {
 `;
 }
 
-module.exports= generateHTML;
+module.exports = generateHTML;

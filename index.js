@@ -1,13 +1,13 @@
 //Linking all pages for page creation and team profiles
-const generateHTML = require('./src/generateHTML');
+const generateHTML = require('./src/generateHTML')
 
-const Intern = require('./lib/Intern');
-const Engineer = require('./lib/Engineer');
-const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern')
+const Engineer = require('./lib/Engineer')
+const Manager = require('./lib/Manager')
 
 
-const fs = require('fs');
-const inquirer = require('inquirer');
+const fs = require('fs')
+const inquirer = require('inquirer')
 
 
 const managerQuestions = [
@@ -190,6 +190,7 @@ const addManager = () => {
         console.log(teamArray)
         promptMenu()
     }) 
+    return teamArray;
 }
 
 const addEmployee = () => {
@@ -215,8 +216,8 @@ const addEmployee = () => {
     })
 }
 
-const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
+const writeFile = (data) => {
+    fs.writeFile('./dist/index.html', data, (err) => {
         if (err) {
             console.log(err);
             return
@@ -227,4 +228,6 @@ const writeFile = data => {
 };
 
 
-addManager()
+addManager((teamArray) => {
+    return generateHTML(teamArray)
+})
