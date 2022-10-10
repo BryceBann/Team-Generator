@@ -30,4 +30,5 @@
   <p>To test the application open the intergrated terminal and enter npm run test.</p>
 
   ## Demo:
+  ![screenShot](./images/teamCards.png)<br>
   
