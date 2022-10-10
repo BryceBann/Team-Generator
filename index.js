@@ -69,7 +69,7 @@ const managerQuestions = [
 
 ]
 
-const menuQuestion = { //might need to call on generate html page
+const menuQuestion = { 
     type: 'list',
     name: 'addFinish',
     message: 'What would you like to do next',
@@ -180,10 +180,8 @@ inquirer.prompt(menuQuestion).then(answer => {
 const addManager = () => {
     inquirer.prompt(managerQuestions).then(managerInfo => {
         let manager;
-        console.log("MANAGERINFO HERE",managerInfo)
         manager = new Manager (managerInfo.name, managerInfo.id, managerInfo.email, managerInfo.officeNumber)
         teamArray.push(manager)
-        console.log(teamArray)
         promptMenu()
     }) 
     return teamArray;
@@ -202,7 +200,6 @@ const addEmployee = () => {
             employee = new Intern (employeeInfo.name, employeeInfo.id, employeeInfo.email, employeeInfo.school)
         }
         teamArray.push(employee)
-        console.log(teamArray)
         promptMenu()
      })
 }
@@ -219,16 +216,5 @@ const writeFile = () => {
 };
 
 
-//console will close without any answers still no page generaton :( 
-addManager() 
-// .then(addEmployee())
-// .then(teamArray => {
-//     return generateHTML(teamArray)
-// })
 
-// .then(pageHTML => {
-//     return writeFile(pageHTML)
-// })
-// .catch(err => {
-//     console.log(err)
-// })
+addManager() 

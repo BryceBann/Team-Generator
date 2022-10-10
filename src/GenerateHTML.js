@@ -63,7 +63,6 @@ generateHTML = (data) => {
 
     for(let i = 0; i < data.length; i++){
         const employee = data[i];
-        console.log(employee)
         const role = employee.getRole();
 
 
@@ -94,7 +93,6 @@ generateHTML = (data) => {
 
 
 const generatePage = function (employeeCards) {
-    console.log("THESE ARE EMPLYEECARDS==========", employeeCards)
     return`
 <!DOCTYPE html>
 <html lang="en">
