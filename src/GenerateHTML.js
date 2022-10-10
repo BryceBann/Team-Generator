@@ -6,12 +6,12 @@ const generateIntern = function (intern) {
     <div class="card h-150">
         <div class="card-header">
             <h3>${intern.name}</h3>
-            <h5>Intern</h5><i class="material-icons">assignment_ind</i>
+            <h5>Intern</h5><i class="fa-sharp fa-solid fa-graduation-cap"></i>
         </div>
 
         <div class="card-body">
             <p class="id">ID: ${intern.id}</p>
-            <p class="email">Email: ${intern.email}</p>
+            <p class="email">Email: <a href="mailto: ${intern.email}">${intern.email}</a></p>
             <p class="school">School: ${intern.school}</p>
         </div>
     </div>
@@ -25,13 +25,13 @@ const generateEngineer = function (engineer) {
     <div class="card h-150">
         <div class="card-header">
             <h3>${engineer.name}</h3>
-            <h5>Intern</h5><i class="material-icons">laptop_mac</i>
+            <h5>Engineer</h5><i class="fa-solid fa-laptop"></i>
         </div>
 
         <div class="card-body">
             <p class="id">ID: ${engineer.id}</p>
-            <p class="email">Email: ${engineer.email}</p>
-            <p class="github">Github: ${engineer.github}</p>
+            <p class="email">Email: <a href="mailto: ${engineer.email}">${engineer.email}</a></p>
+            <p class="github">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
         </div>
     </div>
 </div>
@@ -44,13 +44,13 @@ const generateManager = function (manager) {
     <div class="card h-150">
         <div class="card-header">
             <h3>${manager.name}</h3>
-            <h5>Intern</h5><i class="material-icons">laptop_mac</i>
+            <h5>Manager</h5><i class="fa-regular fa-clipboard"></i>
         </div>
 
         <div class="card-body">
             <p class="id">ID: ${manager.id}</p>
-            <p class="email">Email: ${manager.email}</p>
-            <p class="github">Github: ${manager.officeNumber}</p>
+            <p class="email">Email: <a href="mailto: ${manager.email}">${manager.email}</a></p>
+            <p class="officeNumber">Office Number: ${manager.officeNumber}</p>
         </div>
     </div>
 </div>
@@ -61,8 +61,9 @@ const generateManager = function (manager) {
 generateHTML = (data) => {
     pageArray = [];
 
-    for(let i = 0; i <data.length; i++){
+    for(let i = 0; i < data.length; i++){
         const employee = data[i];
+        console.log(employee)
         const role = employee.getRole();
 
 
@@ -78,7 +79,7 @@ generateHTML = (data) => {
             pageArray.push(internCard)
         }
 
-        if(role === "Enginerr") {
+        if(role === "Engineer") {
             const engineerCard = generateEngineer(employee)
 
             pageArray.push(engineerCard)
@@ -93,6 +94,7 @@ generateHTML = (data) => {
 
 
 const generatePage = function (employeeCards) {
+    console.log("THESE ARE EMPLYEECARDS==========", employeeCards)
     return`
 <!DOCTYPE html>
 <html lang="en">

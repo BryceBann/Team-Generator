@@ -1,2 +1,3 @@
--manager role not showing 
--page is not generating 
+-card zise and font size 
+
+

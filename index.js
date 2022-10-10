@@ -69,7 +69,7 @@ const managerQuestions = [
 
 ]
 
-const menuQuestion = {
+const menuQuestion = { //might need to call on generate html page
     type: 'list',
     name: 'addFinish',
     message: 'What would you like to do next',
@@ -130,7 +130,7 @@ const employeeQuestions = [
 
     {
         type: 'input',
-        name: 'Github',
+        name: 'github',
         message: 'Enter github username',
         when: (input) => input.role === 'Engineer',
         validate: ghInput => {
@@ -145,7 +145,7 @@ const employeeQuestions = [
 
     {
     type: 'input',
-    name: 'School',
+    name: 'school',
     message: "Enter intern's school",
     when: (input) => input.role === 'Intern',
     validate: isInput => {
@@ -156,14 +156,9 @@ const employeeQuestions = [
             return false;
         }
     }
-},
-
-{
-    type: 'confirm',
-    name: 'confrimAdd',
-    message: 'Would you like to add more team members?',
-    default: false
 }
+
+
 
 ];
 
@@ -185,8 +180,9 @@ inquirer.prompt(menuQuestion).then(answer => {
 const addManager = () => {
     inquirer.prompt(managerQuestions).then(managerInfo => {
         let manager;
-        manager = new Manager (managerQuestions.name, managerQuestions.id, managerQuestions.email, managerQuestions.officeNumber)
-        teamArray.push(managerInfo)
+        console.log("MANAGERINFO HERE",managerInfo)
+        manager = new Manager (managerInfo.name, managerInfo.id, managerInfo.email, managerInfo.officeNumber)
+        teamArray.push(manager)
         console.log(teamArray)
         promptMenu()
     }) 
@@ -198,26 +194,21 @@ const addEmployee = () => {
 
         let employee;
 
-        if(employeeQuestions.role === "Engineer") {
-            employee = new Engineer (employeeQuestions.name, employeeQuestions.id, employeeQuestions.email, employeeQuestions.github);
+        if(employeeInfo.role === "Engineer") {
+            employee = new Engineer (employeeInfo.name, employeeInfo.id, employeeInfo.email, employeeInfo.github);
            
 
-        }else if(employeeQuestions.role === "Intern") {
-            employee = new Intern (employeeQuestions.name, employeeQuestions.id, employeeQuestions.email, employeeQuestions.school)
+        }else if(employeeInfo.role === "Intern") {
+            employee = new Intern (employeeInfo.name, employeeInfo.id, employeeInfo.email, employeeInfo.school)
         }
-        teamArray.push(employeeInfo)
+        teamArray.push(employee)
         console.log(teamArray)
-
-        if(employeeInfo.confrimAdd) {
-            return addEmployee(teamArray)
-        }else{
-            return teamArray;
-        }
-    })
+        promptMenu()
+     })
 }
 
-const writeFile = (data) => {
-    fs.writeFile('./dist/index.html', data, (err) => {
+const writeFile = () => {
+    fs.writeFile('./dist/index.html', generateHTML(teamArray), (err) => {
         if (err) {
             console.log(err);
             return
@@ -228,6 +219,16 @@ const writeFile = (data) => {
 };
 
 
-addManager((teamArray) => {
-    return generateHTML(teamArray)
-})
+//console will close without any answers still no page generaton :( 
+addManager() 
+// .then(addEmployee())
+// .then(teamArray => {
+//     return generateHTML(teamArray)
+// })
+
+// .then(pageHTML => {
+//     return writeFile(pageHTML)
+// })
+// .catch(err => {
+//     console.log(err)
+// })
