@@ -9,7 +9,7 @@ const Manager = require('./lib/Manager')
 const fs = require('fs')
 const inquirer = require('inquirer')
 
-
+//all the manager questions being asked
 const managerQuestions = [
     {
         type: 'input',
@@ -68,7 +68,7 @@ const managerQuestions = [
     },
 
 ]
-
+//question displays after manager questions and each emplyee entered
 const menuQuestion = { 
     type: 'list',
     name: 'addFinish',
@@ -76,7 +76,7 @@ const menuQuestion = {
     choices: ['Add employee', 'Finish HTML page']
 
 }
-
+//all employee questions 
 const employeeQuestions = [
     {
         type: 'list',
@@ -127,7 +127,7 @@ const employeeQuestions = [
             }
         }
     },
-
+//depending on which role is secleted different questions will be asked
     {
         type: 'input',
         name: 'github',
@@ -161,9 +161,9 @@ const employeeQuestions = [
 
 
 ];
-
+//making the empty array that will contain question answers
 const teamArray = [];
-
+//funtion to end questions or add another employee's
 const promptMenu = () => {
 inquirer.prompt(menuQuestion).then(answer => {
 
@@ -176,7 +176,7 @@ inquirer.prompt(menuQuestion).then(answer => {
 })
 }
 
-
+//functution that makes a new manager class, adds to the array 
 const addManager = () => {
     inquirer.prompt(managerQuestions).then(managerInfo => {
         let manager;
@@ -186,7 +186,7 @@ const addManager = () => {
     }) 
     return teamArray;
 }
-
+//takes the employee informatuion and adds to arrary 
 const addEmployee = () => {
     inquirer.prompt(employeeQuestions).then(employeeInfo => {
 
@@ -203,7 +203,7 @@ const addEmployee = () => {
         promptMenu()
      })
 }
-
+//writes the newly created HTML file 
 const writeFile = () => {
     fs.writeFile('./dist/index.html', generateHTML(teamArray), (err) => {
         if (err) {
@@ -216,5 +216,5 @@ const writeFile = () => {
 };
 
 
-
+//calling functuion to start app
 addManager() 
